@@ -1,0 +1,838 @@
+﻿    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      color: #111;
+      font-family: Impact, Haettenschweiler, "Arial Black", system-ui, sans-serif;
+    }
+    .phone {
+      width: min(430px, 100vw);
+      aspect-ratio: 9 / 16;
+      background: #f5ecdd;
+      border-radius: 10px;
+      padding: 20px 12px 12px;
+      overflow: hidden;
+    }
+    .titleRow {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 22px;
+      font-weight: 1000;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    .redText {
+      color: #ff3030;
+      -webkit-text-stroke: 1.5px #111;
+      text-shadow: 2px 0 0 #111, -2px 0 0 #111, 0 2px 0 #111, 0 -2px 0 #111, 2px 2px 0 #111;
+    }
+    .farmerText {
+      color: #e0b84a;
+      -webkit-text-stroke: 1.5px #111;
+      text-shadow: 2px 0 0 #111, -2px 0 0 #111, 0 2px 0 #111, 0 -2px 0 #111, 2px 2px 0 #111;
+    }
+    .grannyText {
+      color: #b58cff;
+      -webkit-text-stroke: 1.5px #111;
+      text-shadow: 2px 0 0 #111, -2px 0 0 #111, 0 2px 0 #111, 0 -2px 0 #111, 2px 2px 0 #111;
+    }
+    .vs {
+      color: #f5ecdd;
+      font-size: 20px;
+      -webkit-text-stroke: 1.4px #111;
+      text-shadow: 2px 0 0 #111, -2px 0 0 #111, 0 2px 0 #111, 0 -2px 0 #111, 2px 2px 0 #111;
+    }
+    #arena {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: white;
+      border: 4px solid #111;
+      position: relative;
+      overflow: hidden;
+    }
+    .watermark {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 24px;
+      text-align: center;
+      color: rgba(0,0,0,.18);
+      font-size: 20px;
+      font-weight: 1000;
+      pointer-events: none;
+    }
+    .readyText {
+      color: #f0c85a;
+      font-size: 21px;
+      text-shadow: 2px 2px 0 #111, -1px -1px 0 white, 0 0 8px #111;
+    }
+    .awakeningText {
+      color: #f0c85a;
+      font-size: 25px;
+      letter-spacing: 0;
+      text-shadow: 3px 3px 0 #111, -2px -2px 0 white, 0 0 6px rgba(0,0,0,.8);
+    }
+    .awakeningText.angryText {
+      color: #2a2a2a;
+      text-shadow: 3px 3px 0 #111, -2px -2px 0 #f0c85a, 0 0 8px rgba(0,0,0,.9);
+    }
+    .angrySpeedText {
+      color: #222;
+      font-size: 18px;
+      text-shadow: 2px 2px 0 white, -1px -1px 0 #f0c85a, 0 0 5px rgba(0,0,0,.65);
+    }
+    .wheatFloat {
+      color: #f0c85a;
+      font-size: 20px;
+      text-shadow: 2px 2px 0 #111, -1px -1px 0 white, 0 0 5px #111;
+    }
+    .superGolemProgress {
+      position: absolute;
+      z-index: 31;
+      pointer-events: none;
+      color: #f0c85a;
+      font-family: Arial, system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 1000;
+      white-space: nowrap;
+      text-shadow: 2px 0 0 #111, -2px 0 0 #111, 0 2px 0 #111, 0 -2px 0 #111, 2px 2px 0 #111;
+    }
+    .ball {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid rgba(0,0,0,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 1000;
+      z-index: 10;
+      user-select: none;
+      box-shadow: 0 2px 5px rgba(0,0,0,.18);
+    }
+    .redBall { background: #ff3030; color: white; text-shadow: 2px 2px #111; }
+    .redBall.lastStandGlow {
+      animation: lastStandGlow .5s ease-in-out infinite alternate;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.8), 0 0 18px #ff3030, 0 0 30px #ff3030;
+    }
+    @keyframes lastStandGlow {
+      from { filter: brightness(1.05); }
+      to { filter: brightness(1.45); }
+    }
+    .whiteBall { background: white; color: #111; }
+    .whiteBall.lastHarvestGlow {
+      box-shadow: 0 0 0 3px #f0c85a, 0 0 16px rgba(240,200,90,.85), 0 0 28px rgba(70,150,55,.55);
+      filter: saturate(1.2) brightness(1.08);
+    }
+    .grannyBall {
+      background: #b58cff;
+      color: white;
+      text-shadow: 2px 2px #111;
+    }
+    .grannyBall.angryGrandmaGlow {
+      box-shadow: 0 0 0 3px #111, 0 0 18px rgba(0,0,0,.9), 0 0 30px rgba(120,0,0,.65);
+      filter: brightness(.85) contrast(1.25);
+    }
+    .grannyBall.rushGlow {
+      animation: rushPulse .28s ease-in-out infinite alternate;
+      box-shadow: 0 0 0 3px #111, 0 0 14px rgba(0,0,0,.85), 0 0 26px rgba(30,20,35,.75);
+    }
+    .grannyBall.rushCharge {
+      box-shadow: 0 0 0 4px #111, 0 0 20px rgba(0,0,0,.8);
+      filter: brightness(.78) contrast(1.16);
+    }
+    .grannyRushClone {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      pointer-events: none;
+      z-index: 16;
+      transform-origin: center;
+      filter: drop-shadow(2px 2px 0 #111) drop-shadow(0 0 10px rgba(0,0,0,.8));
+    }
+    .grannyRushClone.rushCharge {
+      filter: drop-shadow(2px 2px 0 #111) drop-shadow(0 0 14px rgba(0,0,0,.95)) brightness(.78);
+    }
+    .grannyRushCloneFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .ball.stunned {
+      filter: grayscale(.5) brightness(.85);
+    }
+    @keyframes rushPulse {
+      from { filter: brightness(.86) contrast(1.05); }
+      to { filter: brightness(1.16) contrast(1.18); }
+    }
+    .hurtFlash { animation: hurtFlash .16s steps(2, end) 1; }
+    @keyframes hurtFlash {
+      0% { filter: none; }
+      50% { filter: sepia(1) saturate(8) hue-rotate(-40deg) brightness(1.35); }
+      100% { filter: none; }
+    }
+    .skillBar {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .skill {
+      height: 50px;
+      position: relative;
+      border-radius: 4px;
+      border: 3px solid #c9a24d;
+      background: #f0d7a6;
+      box-shadow: 0 0 0 2px #111, inset 0 0 0 3px rgba(255,255,255,.35), 3px 3px 0 #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+    .whiteSkills .skill {
+      border-color: #8fc65b;
+      background: #dcefc1;
+      box-shadow: 0 0 0 2px #111, inset 0 0 0 3px rgba(255,255,255,.45), 3px 3px 0 #777;
+    }
+    .grannySkills .skill {
+      border-color: #a98be8;
+      background: #eadffc;
+      box-shadow: 0 0 0 2px #111, inset 0 0 0 3px rgba(255,255,255,.45), 3px 3px 0 #65508f;
+    }
+    .skill::after {
+      content: attr(data-key);
+      position: absolute;
+      left: 50%;
+      bottom: -20px;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 18px;
+      text-shadow: 2px 2px #111, -1px -1px #111;
+      z-index: 8;
+    }
+    .skill .name {
+      display: none;
+    }
+    .skill .emoji {
+      font-size: 38px;
+      filter: drop-shadow(2px 2px 0 #111);
+      z-index: 2;
+    }
+    .pixelSwordIcon,
+    .pixelRodIcon,
+    .pixelBowIcon,
+    .pixelTurretIcon,
+    .pixelForkIcon,
+    .pixelHoeIcon,
+    .pixelWheatIcon,
+    .pixelGolemIcon,
+    .grannyTrapIcon,
+    .grannyRushIcon {
+      width: 52px;
+      height: 46px;
+      object-fit: contain;
+      image-rendering: auto;
+      z-index: 2;
+    }
+    .grannyTrapIcon {
+      width: 58px;
+      height: 45px;
+      transform: rotate(-8deg);
+      filter: drop-shadow(2px 2px 0 #111);
+    }
+    .grannyRushIcon {
+      width: 54px;
+      height: 46px;
+      filter: drop-shadow(2px 2px 0 #111);
+    }
+    .grannySkillIcon {
+      font-size: 30px;
+      line-height: 1;
+      filter: drop-shadow(2px 2px 0 #111);
+      z-index: 2;
+    }
+    .clock {
+      position: absolute;
+      inset: 0;
+      display: none;
+      border-radius: 2px;
+      background: conic-gradient(rgba(0,0,0,.76) var(--cool, 0deg), rgba(0,0,0,.18) 0deg);
+      z-index: 3;
+    }
+    .clock::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.75);
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,.45);
+    }
+    .cd {
+      position: absolute;
+      right: 4px;
+      bottom: 3px;
+      min-width: 27px;
+      height: 19px;
+      padding: 0 4px;
+      border-radius: 999px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.80);
+      color: #ffeb3b;
+      border: 1px solid rgba(255,255,255,.55);
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 1000;
+      z-index: 4;
+    }
+    .cooling .clock, .cooling .cd { display: flex; }
+    .redStatus {
+      position: absolute;
+      z-index: 29;
+      pointer-events: none;
+      transform: translate(-50%, -100%);
+      text-align: center;
+      white-space: nowrap;
+      font-family: Arial, system-ui, sans-serif;
+      font-weight: 700;
+      color: #222;
+      text-shadow: none;
+    }
+    .arrowCdText {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 7px;
+      border: 1px solid rgba(0,0,0,.18);
+      border-radius: 4px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 1px 1px 0 rgba(0,0,0,.18);
+      color: #222;
+      font-size: 12px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .arrowCdValue {
+      color: #b45309;
+      font-weight: 800;
+    }
+    .redModeText {
+      display: none;
+      margin-bottom: 2px;
+      font-size: 18px;
+      line-height: 1;
+      color: #ff3030;
+      text-shadow: 2px 2px 0 #111, -1px -1px 0 white, 0 0 8px #ff3030;
+    }
+    .redStatus.rage .redModeText,
+    .redStatus.lastStand .redModeText {
+      display: block;
+    }
+    .redStatus.lastStand .redModeText {
+      color: #fff0a6;
+      font-size: 20px;
+      text-shadow: 2px 2px 0 #111, -1px -1px 0 white, 0 0 12px #ff3030;
+    }
+    .hint {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: #111;
+      color: white;
+      font-weight: 1000;
+      cursor: pointer;
+    }
+    .projectile {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      background: url("./assets/red-projectile-arrow.png") center / contain no-repeat;
+      transform-origin: center;
+      z-index: 9;
+      image-rendering: auto;
+    }
+    .projectile::after {
+      content: none;
+    }
+    .slipperProjectile,
+    .bigSlipperProjectile {
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      filter: drop-shadow(2px 2px 0 #111);
+    }
+    .bigSlipperProjectile {
+      width: 70px;
+      height: 70px;
+      font-size: 56px;
+      z-index: 17;
+    }
+    .mouseTrap {
+      position: absolute;
+      width: 46px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 6;
+      filter: drop-shadow(2px 2px 0 #111);
+      pointer-events: none;
+    }
+    .mouseTrapFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .grannyShield {
+      position: absolute;
+      z-index: 29;
+      pointer-events: none;
+      color: #3178ff;
+      font-family: Arial, system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      text-shadow: 2px 2px 0 white, -1px -1px 0 #111;
+      white-space: nowrap;
+    }
+    .soupAura,
+    .rushImpact,
+    .grannyChargeAura {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 18;
+    }
+    .soupAura {
+      border: 4px solid rgba(49,120,255,.75);
+      box-shadow: 0 0 14px rgba(49,120,255,.65);
+    }
+    .rushImpact {
+      border: 5px solid rgba(255,111,177,.8);
+      box-shadow: 0 0 18px rgba(255,111,177,.75);
+    }
+    .grannyChargeAura {
+      width: 94px;
+      height: 94px;
+      border: 5px solid rgba(0,0,0,.82);
+      border-style: dashed;
+      background:
+        radial-gradient(circle, rgba(0,0,0,.28) 0 24%, transparent 25% 100%),
+        conic-gradient(from 0deg, rgba(0,0,0,.9), rgba(80,80,80,.18), rgba(0,0,0,.9));
+      box-shadow: 0 0 22px rgba(0,0,0,.9), inset 0 0 18px rgba(0,0,0,.65);
+    }
+    .grannyRushSwing,
+    .grannyRushAfterimage,
+    .fallingSlipper {
+      position: absolute;
+      pointer-events: none;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(3px 3px 0 #111);
+      transform-origin: center;
+    }
+    .grannyRushSwing {
+      width: 156px;
+      height: 104px;
+      transform-origin: 22px 88px;
+    }
+    .grannyRushAfterimage {
+      width: 156px;
+      height: 104px;
+      transform-origin: 22px 88px;
+      opacity: .35;
+      filter: brightness(.2) sepia(1) hue-rotate(-20deg) saturate(2) drop-shadow(2px 2px 0 #111);
+      z-index: 19;
+    }
+    .grannyRushStickFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .fallingSlipper {
+      width: 112px;
+      height: 112px;
+      font-size: 92px;
+      z-index: 21;
+    }
+    .fallingSlipperShadow {
+      position: absolute;
+      width: 84px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.72);
+      filter: blur(2px);
+      pointer-events: none;
+      z-index: 19;
+      transform-origin: center;
+    }
+    .swordCast, .rodCast, .bowPose, .rodPose, .pitchfork, .hoeSwing {
+      position: absolute;
+      pointer-events: none;
+      z-index: 15;
+    }
+    .swordCast {
+      width: 64px;
+      height: 64px;
+      transform-origin: 15px 50px;
+    }
+    .swordFrame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .rodCast {
+      width: 72px;
+      height: 72px;
+      transform-origin: 8px 59px;
+    }
+    .rodFrame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .bobberCast {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      pointer-events: none;
+      z-index: 16;
+    }
+    .bobberFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+      filter: drop-shadow(1px 1px 0 #111);
+    }
+    .bowPose, .rodPose, .pitchfork, .hoeSwing {
+      width: 116px;
+      height: 96px;
+      transform-origin: 18px 48px;
+    }
+    .bowPose {
+      width: 72px;
+      height: 72px;
+      transform-origin: 18px 43px;
+    }
+    .hoeSwing {
+      width: 64px;
+      height: 64px;
+      transform-origin: 12px 52px;
+    }
+    .pitchfork {
+      width: 78px;
+      height: 95px;
+      transform-origin: 52px 78px;
+    }
+    .bowFrame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .hoeFrame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .forkFrame {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 78px;
+      height: 95px;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .rodPose::before { content: "🎣"; position: absolute; left: 30px; top: 14px; font-size: 56px; filter: drop-shadow(2px 2px 0 #111); }
+    .pitchfork::before { content: none; }
+    .hoeSwing::before { content: none; }
+    .pullLine {
+      position: absolute;
+      height: 5px;
+      background: repeating-linear-gradient(90deg, #111 0 8px, #eee 8px 14px);
+      border-radius: 999px;
+      transform-origin: 0 50%;
+      z-index: 14;
+      pointer-events: none;
+    }
+    .pullHook {
+      position: absolute;
+      font-size: 24px;
+      z-index: 16;
+      pointer-events: none;
+      filter: drop-shadow(2px 2px 0 #111);
+    }
+    .turret {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      background: url("./assets/red-r-turret.png") center / contain no-repeat;
+      z-index: 7;
+      image-rendering: auto;
+    }
+    .wheat {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      z-index: 5;
+      filter: drop-shadow(1px 1px 0 #111);
+      pointer-events: none;
+    }
+    .wheat.seed { opacity: 1; transform: scale(.9); }
+    .wheat.mature { opacity: 1; transform: scale(1.18); }
+    .wheatFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .golem {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      border-radius: 4px;
+      z-index: 8;
+      pointer-events: none;
+      filter: drop-shadow(2px 2px 0 #111);
+    }
+    .golemFrame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .golem.debugHitbox::after {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      border: 2px dashed rgba(255,0,0,.75);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .golem.lastHarvestGolem {
+      filter: drop-shadow(2px 2px 0 #111) drop-shadow(0 0 8px rgba(180,0,0,.8));
+    }
+    .golem.lastHarvestGolem .golemFrame {
+      filter: sepia(1) saturate(4) hue-rotate(-35deg) brightness(.85);
+    }
+    .golem.superGolem {
+      filter:
+        drop-shadow(3px 3px 0 #111)
+        drop-shadow(0 0 10px rgba(255,230,70,.95))
+        drop-shadow(0 0 22px rgba(255,180,0,.9));
+    }
+    .golem.superGolem::before {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(255,245,120,.26) 0 36%, transparent 58%),
+        conic-gradient(from 0deg, transparent, rgba(255,230,70,.85), transparent, rgba(255,160,0,.75), transparent);
+      animation: superGolemAura .32s linear infinite;
+      z-index: -1;
+      filter: blur(.4px);
+    }
+    .golem.superGolem .golemFrame {
+      filter: saturate(2.4) brightness(1.22) sepia(.55) hue-rotate(2deg);
+    }
+    .golem.superGolem .golemHp {
+      font-size: 13px;
+      border-color: #ffe84d;
+      box-shadow: 0 0 8px rgba(255,230,70,.9);
+    }
+    @keyframes superGolemAura {
+      from { transform: rotate(0deg) scale(.95); opacity: .82; }
+      to { transform: rotate(360deg) scale(1.04); opacity: 1; }
+    }
+    .golemHp {
+      position: absolute;
+      right: -7px;
+      bottom: -8px;
+      min-width: 26px;
+      height: 18px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: #111;
+      color: white;
+      border: 1px solid white;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .floatText {
+      position: absolute;
+      z-index: 30;
+      color: #ff3030;
+      font-size: 19px;
+      font-weight: 1000;
+      text-shadow: 2px 2px white, -1px -1px white, 2px 2px #111;
+      pointer-events: none;
+      animation: rise .55s ease-out forwards;
+    }
+    .healText { color: #2aad4a; }
+    .stickDamageText {
+      color: #8b5a2b;
+      text-shadow: 2px 2px 0 white, -1px -1px 0 #2a1608, 2px 2px 0 #111;
+    }
+    .giantSlipperDamageText {
+      color: #2f80ff;
+      text-shadow: 2px 2px 0 white, -1px -1px 0 #071a4a, 2px 2px 0 #111;
+    }
+    @keyframes rise {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-32px) scale(1.25); opacity: 0; }
+    }
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 1px solid rgba(0,0,0,.28);
+      z-index: 25;
+      pointer-events: none;
+      image-rendering: pixelated;
+    }
+    .particle.blood { background: #d71919; }
+    .particle.farm { background: #7fc94d; }
+    .particle.harvest { background: #ffd34d; }
+    .particle.rushBlack {
+      background: #050505;
+      border-color: #000;
+      box-shadow: 0 0 6px rgba(0,0,0,.75);
+      border-radius: 2px;
+    }
+    .particle.chargeBlack {
+      background: #020202;
+      border-color: rgba(255,255,255,.16);
+      box-shadow: 0 0 9px rgba(0,0,0,.95);
+      border-radius: 2px;
+    }
+    .particle.slipperDust {
+      background: #6a4a24;
+      border-color: rgba(35,20,8,.65);
+      box-shadow: 0 0 5px rgba(70,45,18,.55);
+      border-radius: 2px;
+    }
+    .particle.golemSmoke {
+      background: rgba(35,35,35,.9);
+      border-color: rgba(90,0,0,.45);
+      box-shadow: 0 0 7px rgba(120,0,0,.55);
+      border-radius: 50%;
+    }
+    .particle.superAura {
+      background: #ffe84d;
+      border-color: rgba(255,180,0,.8);
+      box-shadow: 0 0 10px rgba(255,230,70,.95);
+      border-radius: 50%;
+    }
+    .particle.deathRed { background: #ff3030; box-shadow: 0 0 0 1px #8b0000; }
+    .particle.deathWhite { background: #f6f6f6; box-shadow: 0 0 0 1px #777; }
+    .victoryText {
+      position: absolute;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%) scale(.72);
+      z-index: 60;
+      color: #f0c85a;
+      font-size: 42px;
+      font-weight: 1000;
+      letter-spacing: 0;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+      -webkit-text-stroke: 3px #000;
+      text-shadow: 3px 3px 0 #000, -2px -2px 0 #000, 0 0 4px rgba(240,200,90,.55);
+      animation: victoryPop .72s cubic-bezier(.2, 1.45, .35, 1) forwards;
+    }
+    @keyframes victoryPop {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(.55) rotate(-3deg); }
+      58% { opacity: 1; transform: translate(-50%, -50%) scale(1.16) rotate(1deg); }
+      100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    }
+  
+

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Farmer VS Granny</title>
+  <link rel="stylesheet" href="./style.css?v=golem-hp-harvest-1" />
+  <link rel="preload" as="image" href="./assets/granny-r-stick.webp" />
+  <link rel="preload" as="image" href="./assets/granny-e-trap-cutout.png" />
+  <link rel="preload" as="image" href="./assets/granny-r-rush-cutout.png" />
+</head>
+<body>
+  <main class="phone">
+    <div class="titleRow"><span class="farmerText">Farmer</span><span class="vs">VS</span><span class="grannyText">Granny</span></div>
+
+    <section id="arena">
+      <div class="watermark">迷韓</div>
+    </section>
+
+    <div class="skillBar redSkills">
+      <div class="skill" id="rHook" data-key="Q"><div class="name">釣竿</div><img class="pixelRodIcon" src="./assets/red-q-fishing-rod.webp" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="rSword" data-key="W"><div class="name">鐵劍</div><img class="pixelSwordIcon" src="./assets/red-w-sword.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="rBow" data-key="E"><div class="name">弓箭</div><img class="pixelBowIcon" src="./assets/red-e-bow.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="rTurret" data-key="R"><div class="name">砲台</div><img class="pixelTurretIcon" src="./assets/red-r-turret.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+    </div>
+
+    <div class="skillBar whiteSkills">
+      <div class="skill" id="wFork" data-key="Q"><div class="name">草叉</div><img class="pixelForkIcon" src="./assets/white-q-fork.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="wWheat" data-key="W"><div class="name">種麥</div><img class="pixelWheatIcon" src="./assets/white-w-wheat-mature.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="wHoe" data-key="E"><div class="name">鋤頭</div><img class="pixelHoeIcon" src="./assets/white-e-hoe.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="wGolem" data-key="R"><div class="name">鐵巨人</div><img class="pixelGolemIcon" src="./assets/white-r-golem.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+    </div>
+
+    <div class="skillBar grannySkills">
+      <div class="skill" id="gSlipper" data-key="Q"><div class="name">Slipper</div><div class="grannySkillIcon">🩴</div><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="gSoup" data-key="W"><div class="name">Soup</div><div class="grannySkillIcon">🍲</div><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="gTrap" data-key="E"><div class="name">Trap</div><img class="grannyTrapIcon" src="./assets/granny-e-trap-cutout.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+      <div class="skill" id="gRush" data-key="R"><div class="name">Rush</div><img class="grannyRushIcon" src="./assets/granny-r-rush-cutout.png" alt="" draggable="false"><div class="clock"></div><div class="cd">0</div></div>
+    </div>
+
+    <div class="hint">
+      <span><button id="pauseBtn">暫停</button> <button id="resetBtn">重開</button></span>
+    </div>
+  </main>
+
+<script type="module" src="./src/main.js?v=golem-hp-harvest-1"></script>
+</body>
+</html>
+
